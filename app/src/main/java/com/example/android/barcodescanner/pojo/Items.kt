@@ -7,8 +7,6 @@ import java.util.*
 
 @Entity(tableName = "items")
 data class Items(
-    @PrimaryKey(autoGenerate = true)
-    var id: Int,
     @ColumnInfo(name = "item_name")
     var item_name: String,
     @ColumnInfo(name = "item_category")
@@ -18,4 +16,7 @@ data class Items(
    // @ColumnInfo(name = "item_status")
     //var item_status: String
 
-)
+){
+    @PrimaryKey(autoGenerate = true)
+    var id: Long? = null
+}

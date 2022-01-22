@@ -46,13 +46,10 @@
                     android:id="@+id/itemsStatusView"
                     android:layout_width="@dimen/_8sdp"
                     android:layout_height="@dimen/_8sdp"
-                    android:backgroundTint="@color/green"
                     android:layout_marginEnd="@dimen/_5sdp"
                     app:cardCornerRadius="@dimen/_100sdp"
                     android:layout_gravity="center_vertical"
                     />
-
-
             <TextView
                 android:id="@+id/itemDateTV"
                 android:layout_width="wrap_content"
