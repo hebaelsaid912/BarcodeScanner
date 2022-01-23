@@ -45,9 +45,9 @@ You can clone code and run it using :
   - UI tests using ( Espresso Test Recorder ).
 
 
-## Release ABK
+## Release APK
 
 
-Go to the [App Release](https://github.com/hebaelsaid912/BarcodeScanner/tree/main/app/release) to download the latest ABK.
+Go to the [App Release](https://github.com/hebaelsaid912/BarcodeScanner/tree/main/app/release) to download the latest APK.
 
  
