@@ -87,6 +87,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.RationaleCallbacks,
                     is MainViewModel.RoomItemsViewState.Success -> {
                         binding.shimmerEffectRV.stopShimmer()
                         binding.shimmerEffectRV.visibility = View.GONE
+                        binding.mainEmptyView.visibility = View.GONE
                         mainItemsList = it.items as ArrayList<Items>
                         mainItemsAdapter = MainItemsAdapter(mainItemsList)
                         setItemInRV(mainItemsAdapter)

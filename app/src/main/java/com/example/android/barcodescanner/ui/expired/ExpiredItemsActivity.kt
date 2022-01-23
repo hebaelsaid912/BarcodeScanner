@@ -39,6 +39,7 @@ class ExpiredItemsActivity : AppCompatActivity() {
                     is ExpiredItemsViewModel.RoomItemsViewState.Success -> {
                         binding.expiredShimmerEffectRV.stopShimmer()
                         binding.expiredShimmerEffectRV.visibility = View.GONE
+                        binding.expiredEmptyView.visibility = View.GONE
                         expiredItemsList = it.items as ArrayList<Items>
                         expiredItemsAdapter = ExpiredItemsAdapter(expiredItemsList)
                         setItemInRV(expiredItemsAdapter)

@@ -50,7 +50,6 @@ class ExpiredItemsAdapter (private val items: List<Items>)
 
         @SuppressLint("SimpleDateFormat", "SetTextI18n")
         fun bind(item: Items) {
-
             val sdf = SimpleDateFormat("yyyy-MM-dd")
             val d = sdf.format(Date())
             val currentDate = LocalDate.parse(d, DateTimeFormatter.ISO_DATE)
@@ -76,6 +75,7 @@ class ExpiredItemsAdapter (private val items: List<Items>)
             ) {
                 itemState.setCardBackgroundColor(red)
                 itemDate.text = "Expired"
+
             } else {
                 itemView.layoutParams.height = 0
                 itemView.layoutParams.width = 0
