@@ -42,6 +42,9 @@ class ExpiredItemsActivity : AppCompatActivity() {
                         expiredItemsList = it.items as ArrayList<Items>
                         expiredItemsAdapter = ExpiredItemsAdapter(expiredItemsList)
                         setItemInRV(expiredItemsAdapter)
+                        if(expiredItemsList.isEmpty()){
+                            binding.expiredEmptyView.visibility = View.VISIBLE
+                        }
                         Log.d("ExpiredItemsActivity", "get data from db to view")
                         Log.d("ExpiredItemsActivity", expiredItemsList.size.toString())
                     }

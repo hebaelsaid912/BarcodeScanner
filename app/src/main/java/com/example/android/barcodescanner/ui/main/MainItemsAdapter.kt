@@ -60,7 +60,7 @@ class MainItemsAdapter(private val items: List<Items>)
             val diffMonth = abs(expireDate.monthValue - currentDate.monthValue)
             val diffYear = abs(expireDate.year - currentDate.year)
             Log.d("MainActivity","MainAdapter day $diffDays month $diffMonth year $diffYear")
-            var numOfDays = 0
+            val numOfDays :Int
             if(diffMonth>0) {
                  numOfDays = diffDays + (diffMonth * 30)
             }else{

@@ -6,4 +6,6 @@
     <string name="all_items_scanned">Active Items</string>
     <string name="expires_items_scanned">Expired Items</string>
     <string name="see_expired_items">expired items</string>
+    <string name="please_click_plus_button_to_start_scanning">please click plus button to start scanning</string>
+    <string name="there_is_no_product_scanned_yet">There is no product scanned yet</string>
 </resources>

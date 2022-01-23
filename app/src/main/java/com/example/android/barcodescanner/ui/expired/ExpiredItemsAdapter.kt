@@ -55,15 +55,15 @@ class ExpiredItemsAdapter (private val items: List<Items>)
             val d = sdf.format(Date())
             val currentDate = LocalDate.parse(d, DateTimeFormatter.ISO_DATE)
             val expireDate = LocalDate.parse(item.item_expire_date, DateTimeFormatter.ISO_DATE)
-            Log.d("MainActivity", "ExpiredItemsAdapter current $currentDate expire $expireDate")
+            Log.d("ExpiredItemsActivity", "ExpiredItemsAdapter current $currentDate expire $expireDate")
             val diffDays = expireDate.dayOfMonth - currentDate.dayOfMonth
             val diffMonth = abs(expireDate.monthValue - currentDate.monthValue)
             val diffYear = abs(expireDate.year - currentDate.year)
             Log.d(
-                "MainActivity",
+                "ExpiredItemsActivity",
                 "ExpiredItemsAdapter day $diffDays month $diffMonth year $diffYear"
             )
-            var numOfDays = 0
+             val numOfDays :Int
             if (diffMonth > 0) {
                 numOfDays = diffDays + (diffMonth * 30)
             } else {

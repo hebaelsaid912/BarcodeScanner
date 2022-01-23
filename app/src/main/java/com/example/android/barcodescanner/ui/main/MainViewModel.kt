@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.android.barcodescanner.database.ItemsDataBase
+import com.example.android.barcodescanner.data.database.ItemsDataBase
 import com.example.android.barcodescanner.pojo.Items
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -37,7 +37,7 @@ class MainViewModel : ViewModel() {
         object Idle : RoomItemsViewState()
     }
     //Inserting data from Scan to RoomDB
-    fun getItemData(scanData: String , context: Context) = viewModelScope.launch {
+    fun setItemData(scanData: String, context: Context) = viewModelScope.launch {
         _viewState.value = ItemsViewState.Loading
         _viewState.value = try {
             Log.d("MainActivity", "Insert data from scan to room data base")

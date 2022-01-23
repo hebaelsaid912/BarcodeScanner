@@ -1,6 +1,5 @@
 package com.example.android.barcodescanner.ui.main
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.RationaleCallbacks,
     private fun processRender(data: String) {
         lifecycleScope.launchWhenStarted {
             Log.d("MainActivity", data)
-            viewModel.getItemData(data, this@MainActivity)
+            viewModel.setItemData(data, this@MainActivity)
             viewModel.state.collect {
                 when (it) {
                     is MainViewModel.ItemsViewState.Success -> {
@@ -91,6 +90,9 @@ class MainActivity : AppCompatActivity(), EasyPermissions.RationaleCallbacks,
                         mainItemsList = it.items as ArrayList<Items>
                         mainItemsAdapter = MainItemsAdapter(mainItemsList)
                         setItemInRV(mainItemsAdapter)
+                        if(mainItemsList.isEmpty()){
+                            binding.mainEmptyView.visibility = View.VISIBLE
+                        }
                         Log.d("MainActivity", "get data from db to view")
                         Log.d("MainActivity", mainItemsList.size.toString())
                     }
@@ -215,6 +217,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.RationaleCallbacks,
 
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
         Log.d("MainActivity", "onPermissionsGranted + $requestCode + $perms")
+        processRoomDataBaseRender(this)
     }
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
