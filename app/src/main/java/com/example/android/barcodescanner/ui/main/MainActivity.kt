@@ -2,11 +2,11 @@ package com.example.android.barcodescanner.ui.main
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -20,7 +20,7 @@ import com.journeyapps.barcodescanner.CaptureActivity
 import org.json.JSONException
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
-import java.util.ArrayList
+import java.util.*
 
 class MainActivity : AppCompatActivity(), EasyPermissions.RationaleCallbacks,
     EasyPermissions.PermissionCallbacks {
@@ -36,46 +36,13 @@ class MainActivity : AppCompatActivity(), EasyPermissions.RationaleCallbacks,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        readStorageTask()
 
         binding.scanNowBTN.setOnClickListener {
-            accessCamera()
-            openCamToScan()
+            openCameraToScan()
         }
         binding.expiredCV.setOnClickListener {
             val intent = Intent(this, ExpiredItemsActivity::class.java)
             startActivity(intent)
-        }
-    }
-
-    private fun processRender(data: String) {
-        lifecycleScope.launchWhenStarted {
-            Log.d("MainActivity", data)
-            viewModel.setItemData(data, this@MainActivity)
-            viewModel.state.collect {
-                when (it) {
-                    is MainViewModel.ItemsViewState.Success -> {
-                        if (it.isInserted) {
-                            Log.d("MainActivity", "Insert data from scan to room data base")
-                            processRoomDataBaseRender(this@MainActivity)
-                        } else {
-                            Toast.makeText(
-                                this@MainActivity,
-                                "Error please scan again",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                    is MainViewModel.ItemsViewState.Loading -> {
-                        Log.d("MainActivity", "Getting Data From Database")
-                    }
-                    is MainViewModel.ItemsViewState.Error -> {
-                        Toast.makeText(this@MainActivity, "Error convert Data", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-                    else -> Unit
-                }
-            }
         }
     }
 
@@ -121,49 +88,9 @@ class MainActivity : AppCompatActivity(), EasyPermissions.RationaleCallbacks,
     }
 
     //check Permissions
-    private fun readStorageTask() {
-        if (hasReadStoragePermission()) {
-            processRoomDataBaseRender(context = this)
-        } else {
-            EasyPermissions.requestPermissions(
-                this,
-                "This app needs access to your storage,",
-                123,
-                android.Manifest.permission.READ_EXTERNAL_STORAGE
-            )
-        }
-    }
+    // Hamza : TODO 2/13 : already checked in manifest
 
-    private fun accessCamera() {
-        if (hasAccessCameraPermission()) {
-
-            Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
-        } else {
-            EasyPermissions.requestPermissions(
-                this,
-                "This app needs access to your storage,",
-                123,
-                android.Manifest.permission.CAMERA
-            )
-        }
-    }
-
-    private fun hasReadStoragePermission(): Boolean {
-        return EasyPermissions.hasPermissions(
-            this,
-            android.Manifest.permission.READ_EXTERNAL_STORAGE
-        )
-    }
-
-    private fun hasAccessCameraPermission(): Boolean {
-        return EasyPermissions.hasPermissions(
-            this,
-            android.Manifest.permission.CAMERA
-        )
-    }
-
-    // start scan barcode
-    private fun openCamToScan() {
+    private fun openCameraToScan() {
         val barcodeScanner = IntentIntegrator(this)
         barcodeScanner.setPrompt("scan barcode")
         barcodeScanner.setCameraId(0)
@@ -197,6 +124,37 @@ class MainActivity : AppCompatActivity(), EasyPermissions.RationaleCallbacks,
         }
     }
 
+    private fun processRender(data: String) {
+        lifecycleScope.launchWhenStarted {
+            Log.d("MainActivity", data)
+            viewModel.setItemData(data, this@MainActivity)
+            viewModel.state.collect {
+                when (it) {
+                    is MainViewModel.ItemsViewState.Success -> {
+                        if (it.isInserted) {
+                            Log.d("MainActivity", "Insert data from scan to room data base")
+                            processRoomDataBaseRender(this@MainActivity)
+                        } else {
+                            Toast.makeText(
+                                this@MainActivity,
+                                "Error please scan again",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                    is MainViewModel.ItemsViewState.Loading -> {
+                        Log.d("MainActivity", "Getting Data From Database")
+                    }
+                    is MainViewModel.ItemsViewState.Error -> {
+                        Toast.makeText(this@MainActivity, "Error convert Data", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                    else -> Unit
+                }
+            }
+        }
+    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -204,7 +162,6 @@ class MainActivity : AppCompatActivity(), EasyPermissions.RationaleCallbacks,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
-
 
     }
 
