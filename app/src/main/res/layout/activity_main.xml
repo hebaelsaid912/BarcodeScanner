@@ -10,6 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layoutDirection="ltr"
         android:background="@color/primaryColor"
         tools:context=".ui.main.MainActivity">
 
@@ -65,7 +66,9 @@
                             android:text="@string/see_expired_items"
                             android:textColor="@color/red"
                             android:textSize="@dimen/_10ssp" />
+
                     </androidx.cardview.widget.CardView>
+
                 </RelativeLayout>
 
                 <com.facebook.shimmer.ShimmerFrameLayout
@@ -97,7 +100,6 @@
                         <include layout="@layout/shimmer_effect_item_list" />
 
                         <include layout="@layout/shimmer_effect_item_list" />
-
 
                     </LinearLayout>
 
@@ -167,7 +169,6 @@
                 android:textAppearance="?android:textAppearanceSmall"
                 android:textColor="#A2AAB0" />
         </LinearLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
