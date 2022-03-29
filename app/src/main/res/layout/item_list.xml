@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,6 +16,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="@dimen/_10sdp">
+
             <TextView
                 android:id="@+id/itemNameTV"
                 android:layout_width="wrap_content"
@@ -23,8 +25,7 @@
                 android:text="@string/item_name"
                 android:textSize="@dimen/_15ssp"
                 android:fontFamily="@font/gilroy_light"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/itemCategoryTV"
@@ -33,8 +34,7 @@
                 android:textColor="@color/secondaryColorLight"
                 android:text="@string/item_category"
                 android:fontFamily="@font/gilroy_light"
-                android:textSize="@dimen/_10ssp"
-                />
+                android:textSize="@dimen/_10ssp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,21 +48,18 @@
                     android:layout_height="@dimen/_8sdp"
                     android:layout_marginEnd="@dimen/_5sdp"
                     app:cardCornerRadius="@dimen/_100sdp"
-                    android:layout_gravity="center_vertical"
-                    />
-            <TextView
-                android:id="@+id/itemDateTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/secondaryColorLight"
-                android:text="@string/item_name"
-                android:fontFamily="@font/gilroy_light"
-                android:textSize="@dimen/_10ssp"
-                />
+                    android:layout_gravity="center_vertical" />
+
+                <TextView
+                    android:id="@+id/itemDateTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/secondaryColorLight"
+                    android:text="@string/item_name"
+                    android:fontFamily="@font/gilroy_light"
+                    android:textSize="@dimen/_10ssp" />
+
             </LinearLayout>
-
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
-
 </LinearLayout>

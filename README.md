@@ -9,7 +9,7 @@ Expired date with text structure "yyyy-MM-dd"
 
 ## App Screen Recording
 
-full vedio [here](https://drive.google.com/file/d/1XIycDWZCxdm6aK4zCXRFUq5tdokyeQpO/view?usp=sharing).
+Full video [here](https://drive.google.com/file/d/1XIycDWZCxdm6aK4zCXRFUq5tdokyeQpO/view?usp=sharing).
 
 
 https://user-images.githubusercontent.com/72816466/150695979-bfd17542-8447-4a3e-8dc4-4fdbf0088e0a.mp4
@@ -26,6 +26,7 @@ You can clone code and run it using :
 ``
 ## Tech stack & Open-source libraries
 - Minimum SDK level 26
+- Android Gradle plugin requires Java 11 to run.
 - Kotlin based + Coroutines for asynchronous.
 - StateFlow - emit state updates and emit values to consumers.
 - Lifecycle - dispose of observing data when lifecycle state changes.
